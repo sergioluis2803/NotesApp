@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notesapp.databinding.FragmentNotesBinding
 import com.example.notesapp.ui.notes.adapter.NotesAdapter
@@ -35,7 +36,11 @@ class NotesFragment : Fragment() {
     }
 
     private fun initList() {
-        notesAdapter = NotesAdapter(onItemSelected = {})
+        notesAdapter = NotesAdapter(onItemSelected = {
+            findNavController().navigate(
+                NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity()
+            )
+        })
 
         binding.rvNotes.apply {
             layoutManager = LinearLayoutManager(context)
