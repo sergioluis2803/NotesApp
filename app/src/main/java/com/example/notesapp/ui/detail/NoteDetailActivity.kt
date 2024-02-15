@@ -30,14 +30,14 @@ class NoteDetailActivity : AppCompatActivity() {
     private fun initUIState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                noteDetailViewModel.state.collect {
+                /*noteDetailViewModel.state.collect {
                     when (it) {
                         NoteDetailState.Loading -> loadingState()
                         is NoteDetailState.Error -> errorState()
                         is NoteDetailState.Success -> successState()
                         else -> {}
                     }
-                }
+                }*/
             }
         }
     }
