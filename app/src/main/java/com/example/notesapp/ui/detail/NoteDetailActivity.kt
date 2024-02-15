@@ -35,6 +35,7 @@ class NoteDetailActivity : AppCompatActivity() {
                         NoteDetailState.Loading -> loadingState()
                         is NoteDetailState.Error -> errorState()
                         is NoteDetailState.Success -> successState()
+                        else -> {}
                     }
                 }
             }

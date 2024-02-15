@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
-import com.example.notesapp.data.model.Note
+import com.example.notesapp.domain.model.Note
 
 class NotesAdapter(private var notesList: List<Note> = emptyList(),
-    private val onItemSelected: (Note) -> Unit) :
+                   private val onItemSelected: (Note) -> Unit) :
     RecyclerView.Adapter<NotesViewHolder>() {
 
     fun updateList(list: List<Note>) {

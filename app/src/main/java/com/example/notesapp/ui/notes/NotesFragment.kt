@@ -51,7 +51,7 @@ class NotesFragment : Fragment() {
     private fun initUIState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                notesViewModel.notes.collect {
+                notesViewModel.state.collect {
                     notesAdapter.updateList(it)
                 }
             }
