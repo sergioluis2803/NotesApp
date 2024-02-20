@@ -5,9 +5,18 @@
 
     <!--description image-->
     <string name="description_delete">Eliminar nota</string>
+    <string name="add_note">Nota nueva</string>
+    <string name="notes_empty">No tienes notas</string>
 
     <!--Bottom Bar-->
     <string name="notes">Notas</string>
     <string name="search">Busqueda</string>
-    <string name="options">Crear nota</string>
+    <string name="options">Opciones</string>
+
+    <!--Name Buttons-->
+    <string name="save_note">Guardar</string>
+
+    <!--options-->
+    <string name="change_mod">Cambiar modo</string>
+    <string name="configuration">Configuracion</string>
 </resources>

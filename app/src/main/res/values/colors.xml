@@ -12,9 +12,9 @@
 
     <color name="red">#FF0000</color>
 
-    <color name="redOrange">#CD9393</color>
-    <color name="redPink">#D186A0</color>
+    <color name="redOrange">#F0BCBC</color>
+    <color name="redPink">#C38198</color>
     <color name="babyBlue">#FF81DEEA</color>
-    <color name="violet">#FFCF94DA</color>
+    <color name="violet">#C992D3</color>
     <color name="lightGreen">#FFE7ED9B</color>
 </resources>

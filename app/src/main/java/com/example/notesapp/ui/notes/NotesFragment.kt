@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,12 +34,21 @@ class NotesFragment : Fragment() {
     private fun initUI() {
         initUIState()
         initList()
+        initListener()
+    }
+
+    private fun initListener() {
+        binding.btnNew.setOnClickListener {
+            findNavController().navigate(
+                NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity(0)
+            )
+        }
     }
 
     private fun initList() {
         notesAdapter = NotesAdapter(onItemSelected = {
             findNavController().navigate(
-                NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity()
+                NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity(it.id!!)
             )
         })
 
@@ -52,7 +62,12 @@ class NotesFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 notesViewModel.state.collect {
-                    notesAdapter.updateList(it)
+                    if (it.isEmpty()) {
+                        binding.tvMessage.isVisible = true
+                    } else {
+                        notesAdapter.updateList(it)
+                        binding.tvMessage.isVisible = false
+                    }
                 }
             }
         }

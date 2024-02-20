@@ -28,5 +28,10 @@
         android:id="@+id/noteDetailActivity"
         android:name="com.example.notesapp.ui.detail.NoteDetailActivity"
         android:label="activity_note_detail"
-        tools:layout="@layout/activity_note_detail" />
+        tools:layout="@layout/activity_note_detail" >
+        <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </activity>
 </navigation>

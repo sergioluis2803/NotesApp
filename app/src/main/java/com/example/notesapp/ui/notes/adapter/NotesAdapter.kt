@@ -1,5 +1,6 @@
 package com.example.notesapp.ui.notes.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ class NotesAdapter(private var notesList: List<Note> = emptyList(),
                    private val onItemSelected: (Note) -> Unit) :
     RecyclerView.Adapter<NotesViewHolder>() {
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateList(list: List<Note>) {
         notesList = list
         notifyDataSetChanged()
