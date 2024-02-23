@@ -5,6 +5,7 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="10dp"
     android:padding="15dp">
 
     <TextView
@@ -19,13 +20,13 @@
 
     <TextView
         android:id="@+id/tvDescription"
+        style="@style/Description_Note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
-        style="@style/Description_Note"
         tool:text="@string/options" />
 
     <ImageView
@@ -33,6 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/description_delete"
+        android:padding="10dp"
         android:src="@drawable/ic_delete"
         app:layout_constraintBottom_toBottomOf="@+id/tvDescription"
         app:layout_constraintEnd_toEndOf="parent"

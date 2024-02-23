@@ -31,7 +31,6 @@
         tools:layout="@layout/activity_note_detail" >
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="0" />
+            app:argType="integer" />
     </activity>
 </navigation>

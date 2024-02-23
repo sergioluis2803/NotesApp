@@ -5,15 +5,14 @@
     android:id="@+id/layoutDetail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/red"
     tools:context=".ui.detail.NoteDetailActivity">
 
     <LinearLayout
         android:id="@+id/linearColors"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:orientation="horizontal"
         android:layout_margin="15dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,47 +21,47 @@
             android:id="@+id/view1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_background" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_background_1" />
 
         <View
             android:id="@+id/view2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_background" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_background_2" />
 
         <View
             android:id="@+id/view3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_background" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_background_3" />
 
         <View
             android:id="@+id/view4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginEnd="10dp"
-            android:background="@drawable/rounded_background" />
+            android:layout_weight="1"
+            android:background="@drawable/rounded_background_4" />
 
         <View
             android:id="@+id/view5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/rounded_background" />
+            android:background="@drawable/rounded_background_5" />
 
     </LinearLayout>
 
     <EditText
         android:id="@+id/etTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:autofillHints="name"
         android:gravity="left"
@@ -77,8 +76,8 @@
     <EditText
         android:id="@+id/etDescription"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="30dp"
         android:autofillHints="name"
         android:gravity="left"
         android:inputType="text"
@@ -90,6 +89,7 @@
 
     <Button
         android:id="@+id/btnSaveNote"
+        style="@style/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

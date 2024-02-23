@@ -19,7 +19,7 @@
         android:right="4dp"
         android:top="4dp">
         <shape android:shape="oval">
-            <solid android:color="@android:color/white" />
+            <solid android:color="#FFE7ED9B" />
             <corners android:radius="80dp" />
         </shape>
     </item>

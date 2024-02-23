@@ -46,11 +46,14 @@ class NotesFragment : Fragment() {
     }
 
     private fun initList() {
-        notesAdapter = NotesAdapter(onItemSelected = {
-            findNavController().navigate(
-                NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity(it.id!!)
-            )
-        })
+        notesAdapter = NotesAdapter(
+            onItemSelected = {
+                findNavController().navigate(
+                    NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity(it.id!!)
+                )
+            },
+            onItemDelete = { notesViewModel.onEvent(NotesEvent.DeleteNote(it)) }
+        )
 
         binding.rvNotes.apply {
             layoutManager = LinearLayoutManager(context)
@@ -62,10 +65,10 @@ class NotesFragment : Fragment() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 notesViewModel.state.collect {
-                    if (it.isEmpty()) {
+                    if (it.notes.isEmpty()) {
                         binding.tvMessage.isVisible = true
                     } else {
-                        notesAdapter.updateList(it)
+                        notesAdapter.updateList(it.notes)
                         binding.tvMessage.isVisible = false
                     }
                 }

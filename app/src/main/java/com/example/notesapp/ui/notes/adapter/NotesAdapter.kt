@@ -7,8 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.R
 import com.example.notesapp.domain.model.Note
 
-class NotesAdapter(private var notesList: List<Note> = emptyList(),
-                   private val onItemSelected: (Note) -> Unit) :
+class NotesAdapter(
+    private var notesList: List<Note> = emptyList(),
+    private val onItemSelected: (Note) -> Unit,
+    private val onItemDelete: (Note) -> Unit
+) :
     RecyclerView.Adapter<NotesViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
@@ -26,7 +29,7 @@ class NotesAdapter(private var notesList: List<Note> = emptyList(),
     override fun getItemCount() = notesList.size
 
     override fun onBindViewHolder(holder: NotesViewHolder, position: Int) {
-        holder.render(notesList[position], onItemSelected)
+        holder.render(notesList[position], onItemSelected, onItemDelete)
     }
 
 }

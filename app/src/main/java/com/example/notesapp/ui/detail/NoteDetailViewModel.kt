@@ -44,7 +44,7 @@ class NoteDetailViewModel @Inject constructor(
                             text = note.title,
                             isHintVisible = false
                         )
-                        _noteContent.value = noteContent.value.copy(
+                        _noteContent.value = _noteContent.value.copy(
                             text = note.content,
                             isHintVisible = false
                         )
@@ -52,7 +52,6 @@ class NoteDetailViewModel @Inject constructor(
                     }
                 }
             }
-
         }
     }
 
@@ -104,12 +103,27 @@ class NoteDetailViewModel @Inject constructor(
 
             }
         }
-
     }
 
+    fun getNoteDetail(noteId: Int){
+        viewModelScope.launch {
+            noteUseCases.getNote(noteId)?.also { note ->
+                currentNoteId = note.id
+                _noteTitle.value = noteTitle.value.copy(
+                    text = note.title,
+                    isHintVisible = false
+                )
+                _noteContent.value = noteContent.value.copy(
+                    text = note.content,
+                    isHintVisible = false
+                )
+                _noteColor.value = note.color
+            }
+        }
+    }
 
     sealed class UiEvent {
         data class ShowSnackbar(val message: String) : UiEvent()
-        object SaveNote : UiEvent()
+        data object SaveNote : UiEvent()
     }
 }
