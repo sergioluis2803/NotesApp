@@ -1,5 +1,6 @@
 package com.example.notesapp.ui.detail
 
+import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,7 +27,7 @@ class NoteDetailViewModel @Inject constructor(
     private val _noteContent = MutableStateFlow(NoteTextFieldState(hint = "Ingresa el contenido"))
     val noteContent: StateFlow<NoteTextFieldState> = _noteContent
 
-    private val _noteColor = MutableStateFlow(Note.noteColors.random())
+    private val _noteColor = MutableStateFlow(NoteColor().getColorRandom())
     val noteColor: StateFlow<Int> = _noteColor
 
     private val _eventFlow = MutableSharedFlow<UiEvent>()

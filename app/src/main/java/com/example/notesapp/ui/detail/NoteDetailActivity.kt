@@ -1,11 +1,11 @@
 package com.example.notesapp.ui.detail
 
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -42,7 +42,7 @@ class NoteDetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 noteDetailViewModel.noteColor.collect {
-                    updateColorNote(it, args.id)
+                    updateColorNote(it)
                 }
             }
         }
@@ -93,11 +93,9 @@ class NoteDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateColorNote(color: Int, id: Int) {
-       /* if (id != 0) {
-            binding.layoutDetail.background = ColorDrawable(color)
-        }*/
-        binding.layoutDetail.background = ColorDrawable(color)
+    private fun updateColorNote(color: Int) {
+        val test = ContextCompat.getColor(this, color)
+        binding.layoutDetail.setBackgroundColor(test)
     }
 
     private fun initUI() {
@@ -118,7 +116,6 @@ class NoteDetailActivity : AppCompatActivity() {
         with(binding) {
             view1.setOnClickListener {
                 noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.redOrange))
-               // Toast.makeText(this@NoteDetailActivity, "${noteDetailViewModel.noteColor.value}", Toast.LENGTH_SHORT).show()
             }
             view2.setOnClickListener {
                 noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.redPink))
