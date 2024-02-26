@@ -4,7 +4,6 @@ import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextWatcher
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
@@ -43,7 +42,7 @@ class NoteDetailActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 noteDetailViewModel.noteColor.collect {
-                    updateColorNote(it)
+                    updateColorNote(it, args.id)
                 }
             }
         }
@@ -72,37 +71,8 @@ class NoteDetailActivity : AppCompatActivity() {
             }
         }
 
-        binding.etTitle.addTextChangedListener(validationTitle)
-        binding.etDescription.addTextChangedListener(validationContent)
-
         val noteId = args.id
         noteDetailViewModel.getNoteDetail(noteId)
-    }
-
-    private val validationTitle = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            noteDetailViewModel.onEvent(AddEditNoteEvent.EnteredTitle(p0.toString()))
-        }
-    }
-
-    private val validationContent = object : TextWatcher {
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-        }
-
-        override fun afterTextChanged(p0: Editable?) {
-            noteDetailViewModel.onEvent(AddEditNoteEvent.EnteredContent(p0.toString()))
-        }
-
     }
 
     private fun updateContentNote(it: NoteTextFieldState) {
@@ -123,7 +93,10 @@ class NoteDetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateColorNote(color: Int) {
+    private fun updateColorNote(color: Int, id: Int) {
+       /* if (id != 0) {
+            binding.layoutDetail.background = ColorDrawable(color)
+        }*/
         binding.layoutDetail.background = ColorDrawable(color)
     }
 
@@ -133,23 +106,38 @@ class NoteDetailActivity : AppCompatActivity() {
 
     private fun initListener() {
         binding.btnSaveNote.setOnClickListener {
+            val enteredTitle = binding.etTitle.text.toString()
+            noteDetailViewModel.onEvent(AddEditNoteEvent.EnteredTitle(enteredTitle))
+
+            val enteredContent = binding.etDescription.text.toString()
+            noteDetailViewModel.onEvent(AddEditNoteEvent.EnteredContent(enteredContent))
+
             noteDetailViewModel.onEvent(AddEditNoteEvent.SaveNote)
         }
 
         with(binding) {
-            view1.setOnClickListener { noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.redOrange)) }
-            view2.setOnClickListener { noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.redPink)) }
-            view3.setOnClickListener { noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.babyBlue)) }
-            view4.setOnClickListener { noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.violet)) }
-            view5.setOnClickListener { noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.lightGreen)) }
+            view1.setOnClickListener {
+                noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.redOrange))
+               // Toast.makeText(this@NoteDetailActivity, "${noteDetailViewModel.noteColor.value}", Toast.LENGTH_SHORT).show()
+            }
+            view2.setOnClickListener {
+                noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.redPink))
+            }
+            view3.setOnClickListener {
+                noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.babyBlue))
+            }
+            view4.setOnClickListener {
+                noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.violet))
+            }
+            view5.setOnClickListener {
+                noteDetailViewModel.onEvent(AddEditNoteEvent.ChangeColor(R.color.lightGreen))
+            }
         }
     }
 
     private fun successState() {
         Toast.makeText(
-            this@NoteDetailActivity,
-            "NOTA GUARDADA",
-            Toast.LENGTH_SHORT
+            this@NoteDetailActivity, "NOTA GUARDADA", Toast.LENGTH_SHORT
         ).show()
 
         onBackPressedDispatcher.onBackPressed()
@@ -157,9 +145,7 @@ class NoteDetailActivity : AppCompatActivity() {
 
     private fun errorState() {
         Toast.makeText(
-            this@NoteDetailActivity,
-            "HUBO UN ERROR",
-            Toast.LENGTH_SHORT
+            this@NoteDetailActivity, "HUBO UN ERROR", Toast.LENGTH_SHORT
         ).show()
     }
 

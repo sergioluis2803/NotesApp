@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -52,7 +53,10 @@ class NotesFragment : Fragment() {
                     NotesFragmentDirections.actionNotesFragmentToNoteDetailActivity(it.id!!)
                 )
             },
-            onItemDelete = { notesViewModel.onEvent(NotesEvent.DeleteNote(it)) }
+            onItemDelete = {
+                notesViewModel.onEvent(NotesEvent.DeleteNote(it))
+                showToast("Nota eliminada correctamente")
+            }
         )
 
         binding.rvNotes.apply {
@@ -74,6 +78,10 @@ class NotesFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun showToast(message: String) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCreateView(

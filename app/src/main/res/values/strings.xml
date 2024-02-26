@@ -17,6 +17,6 @@
     <string name="save_note">Guardar</string>
 
     <!--options-->
-    <string name="change_mod">Cambiar modo</string>
-    <string name="configuration">Configuracion</string>
+    <string name="change_mod">Desarrollado por</string>
+    <string name="configuration">Sergio Mostacero</string>
 </resources>
