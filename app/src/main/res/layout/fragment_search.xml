@@ -14,6 +14,9 @@
         android:layout_margin="20dp"
         android:autofillHints="name"
         android:inputType="text"
+        android:textColor="@color/accent"
+        android:textColorHint="@color/accent"
+        android:paddingHorizontal="10dp"
         android:hint="@string/hint_search"
         android:background="@color/gray"
         android:labelFor="@id/etSearch" />

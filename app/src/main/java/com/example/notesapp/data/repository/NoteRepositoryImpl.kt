@@ -21,4 +21,8 @@ class NoteRepositoryImpl(private val dao: NoteDao) : NoteRepository {
     override suspend fun deleteNote(note: Note) {
         dao.deleteNote(note)
     }
+
+    override fun getNotesSearch(query: String): Flow<List<Note>> {
+        return dao.getNotesSearch(query)
+    }
 }
