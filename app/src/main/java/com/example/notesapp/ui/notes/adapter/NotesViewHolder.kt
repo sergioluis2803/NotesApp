@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notesapp.databinding.ItemNoteBinding
 import com.example.notesapp.domain.model.Note
+import com.example.notesapp.ui.detail.NoteColor
 
 class NotesViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 

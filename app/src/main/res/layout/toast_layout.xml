@@ -1,0 +1,30 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_toast_detail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/textViewMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="40dp"
+        android:layout_weight="2"
+        android:text="@string/note_delete"
+        android:textColor="@color/secondary"
+        android:textSize="17sp" />
+
+    <Button
+        android:id="@+id/buttonAction"
+        style="@style/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_weight="1"
+        android:text="@string/cancel_note" />
+
+</LinearLayout>

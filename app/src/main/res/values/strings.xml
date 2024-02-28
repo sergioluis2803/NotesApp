@@ -1,12 +1,5 @@
 <resources>
     <string name="app_name">NotesApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!--description image-->
-    <string name="description_delete">Eliminar nota</string>
-    <string name="add_note">Nota nueva</string>
-    <string name="notes_empty">No tienes notas</string>
 
     <!--Bottom Bar-->
     <string name="notes">Notas</string>
@@ -15,8 +8,28 @@
 
     <!--Name Buttons-->
     <string name="save_note">Guardar</string>
+    <string name="cancel_note">Restaurar</string>
+
+    <!--description image-->
+    <string name="description_delete">Eliminar nota</string>
+    <string name="add_note">Nota nueva</string>
+    <string name="notes_empty">No tienes notas</string>
 
     <!--options-->
     <string name="change_mod">Desarrollado por</string>
     <string name="configuration">Sergio Mostacero</string>
+
+    <!--validation save note-->
+    <string name="validation_title">El título de la nota no puede estar vacío</string>
+    <string name="validation_content">El contenido de la nota no puedo ser vacío</string>
+    <string name="save_question">Ingresa contenido de la nota</string>
+    <string name="save_confirmation">Nota guardada</string>
+    <string name="negation_save">Ocurrió un error. Vuelve a intentarlo en un momento.</string>
+    <string name="note_delete">Nota eliminada</string>
+
+    <!--Hint edit text-->
+    <string name="hint_content">Ingresa tu descripción aquí</string>
+    <string name="hint_title">Ingresa tu título aquí</string>
+    <string name="hint_search">Ingresa tu nota a buscar aquí</string>
+
 </resources>

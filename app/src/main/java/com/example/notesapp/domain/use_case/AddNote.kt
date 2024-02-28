@@ -12,7 +12,7 @@ class AddNote(
     @Throws(InvalidNoteException::class)
     suspend operator fun invoke(note: Note) {
         if (note.title.isBlank()) {
-            throw InvalidNoteException("El título de la nota no puede ser vacío")
+            throw InvalidNoteException("El título de la nota no puede estar vacío")
         }
         if (note.content.isBlank()) {
             throw InvalidNoteException("El contenido de la nota no puedo ser vacío")

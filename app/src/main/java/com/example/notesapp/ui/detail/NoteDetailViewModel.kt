@@ -1,6 +1,5 @@
 package com.example.notesapp.ui.detail
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -41,14 +40,8 @@ class NoteDetailViewModel @Inject constructor(
                 viewModelScope.launch {
                     noteUseCases.getNote(noteId)?.also { note ->
                         currentNoteId = note.id
-                        _noteTitle.value = noteTitle.value.copy(
-                            text = note.title,
-                            isHintVisible = false
-                        )
-                        _noteContent.value = noteContent.value.copy(
-                            text = note.content,
-                            isHintVisible = false
-                        )
+                        _noteTitle.value = noteTitle.value.copy(text = note.title)
+                        _noteContent.value = noteContent.value.copy(text = note.content)
                         _noteColor.value = note.color
                     }
                 }
@@ -60,17 +53,6 @@ class NoteDetailViewModel @Inject constructor(
         when (event) {
             is AddEditNoteEvent.ChangeColor -> {
                 _noteColor.value = event.color
-            }
-
-            is AddEditNoteEvent.ChangeContentFocus -> {
-                _noteContent.value =
-                    noteContent.value.copy(isHintVisible = _noteContent.value.text.isBlank())
-            }
-
-            is AddEditNoteEvent.ChangeTitleFocus -> {
-                _noteTitle.value = noteTitle.value.copy(
-                    isHintVisible = noteTitle.value.text.isBlank()
-                )
             }
 
             is AddEditNoteEvent.EnteredContent -> {
@@ -106,18 +88,12 @@ class NoteDetailViewModel @Inject constructor(
         }
     }
 
-    fun getNoteDetail(noteId: Int){
+    fun getNoteDetail(noteId: Int) {
         viewModelScope.launch {
             noteUseCases.getNote(noteId)?.also { note ->
                 currentNoteId = note.id
-                _noteTitle.value = noteTitle.value.copy(
-                    text = note.title,
-                    isHintVisible = false
-                )
-                _noteContent.value = noteContent.value.copy(
-                    text = note.content,
-                    isHintVisible = false
-                )
+                _noteTitle.value = noteTitle.value.copy(text = note.title)
+                _noteContent.value = noteContent.value.copy(text = note.content)
                 _noteColor.value = note.color
             }
         }

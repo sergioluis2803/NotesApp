@@ -1,11 +1,12 @@
 package com.example.notesapp.ui.notes
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -13,7 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewbinding.ViewBinding
+import com.example.notesapp.R
 import com.example.notesapp.databinding.FragmentNotesBinding
+import com.example.notesapp.databinding.ToastLayoutBinding
 import com.example.notesapp.ui.notes.adapter.NotesAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,6 +31,9 @@ class NotesFragment : Fragment() {
     private var _binding: FragmentNotesBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var popupToast: ToastLayoutBinding
+    private lateinit var dialogToast: AlertDialog
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
@@ -36,6 +43,7 @@ class NotesFragment : Fragment() {
         initUIState()
         initList()
         initListener()
+        configurationToast()
     }
 
     private fun initListener() {
@@ -55,7 +63,7 @@ class NotesFragment : Fragment() {
             },
             onItemDelete = {
                 notesViewModel.onEvent(NotesEvent.DeleteNote(it))
-                showToast("Nota eliminada correctamente")
+                dialogToast.show()
             }
         )
 
@@ -71,17 +79,35 @@ class NotesFragment : Fragment() {
                 notesViewModel.state.collect {
                     if (it.notes.isEmpty()) {
                         binding.tvMessage.isVisible = true
+                        binding.rvNotes.isVisible = false
                     } else {
                         notesAdapter.updateList(it.notes)
                         binding.tvMessage.isVisible = false
+                        binding.rvNotes.isVisible = true
                     }
                 }
             }
         }
     }
 
-    private fun showToast(message: String) {
-        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    private fun configurationToast(){
+        popupToast = ToastLayoutBinding.inflate(layoutInflater)
+        dialogToast = initConfigPopUp(requireContext(), popupToast)
+
+
+        popupToast.buttonAction.setOnClickListener {
+            notesViewModel.onEvent(NotesEvent.RestoreNote)
+            dialogToast.hide()
+        }
+    }
+
+    private fun initConfigPopUp(context: Context, popupToast: ViewBinding, state: Boolean = true): AlertDialog {
+        val dialogBuilder = AlertDialog.Builder(context, R.style.FondoDialog)
+        dialogBuilder.setView(popupToast.root)
+        dialogBuilder.setCancelable(false)
+        val dialog = dialogBuilder.create()
+        dialog.setCancelable(state)
+        return dialog
     }
 
     override fun onCreateView(
@@ -90,5 +116,10 @@ class NotesFragment : Fragment() {
     ): View {
         _binding = FragmentNotesBinding.inflate(layoutInflater, container, false)
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        dialogToast.dismiss()
     }
 }

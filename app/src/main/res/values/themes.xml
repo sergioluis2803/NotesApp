@@ -13,13 +13,32 @@
         <item name="android:textColor">@color/secondary</item>
     </style>
 
+    <style name="FondoDialog" parent="android:Theme.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
     <style name="Title_Note" parent="Title">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/primary</item>
     </style>
 
+    <style name="Title_Note_Detail" parent="Title">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:maxLength">50</item>
+        <item name="android:layout_gravity">left</item>
+    </style>
+
     <style name="Description_Note" parent="Title">
         <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/primary</item>
+    </style>
+
+    <style name="Description_Note_Detail" parent="Title">
+        <item name="android:textSize">18sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:textColor">@color/primary</item>
     </style>
@@ -29,6 +48,13 @@
         <item name="android:textSize">20sp</item>
         <item name="backgroundTint">@color/secondary</item>
         <item name="android:textColor">@color/accent</item>
+    </style>
+
+    <style name="Color_Note">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:alpha">0.3</item>
     </style>
 
 </resources>
